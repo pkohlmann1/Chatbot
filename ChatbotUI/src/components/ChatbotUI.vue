@@ -40,7 +40,7 @@ export default {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: this.text }),
       };
-      fetch("http://localhost:8000/send-message", requestOptions)
+      fetch("http://localhost:7799/send-message", requestOptions)
         .then((response) => response.json())
         .then((data) => {
           this.addMessageReceive(data);

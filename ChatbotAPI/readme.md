@@ -44,6 +44,6 @@ Change into same directory where api.py is located if necessary
 Run server with uvicorn
 
 ```bash
-uvicorn api:app --reload
+python main.py
 ```
 Access Webserver via Webbrowser-URL [localhost](http://127.0.0.1:8000/). Check docs for more information and test environment. [docs](http://127.0.0.1:8000/docs)
