@@ -14,12 +14,14 @@ export default {
       this.text = "";
     },
     addMessageSend() {
+      let d = new Date();
+      let timeStamp = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '   ' +  d.getHours() + ':' + d.getMinutes();  
       let message = {
         id: this.counter,
         message: this.text,
         sender: 0,
         name: "Philip",
-        time: Date.now(),
+        time: timeStamp,
       };
       this.messages.push(message);
       this.counter++;
@@ -103,12 +105,13 @@ export default {
         </li>
       </ul>
       <footer>
-        <textarea placeholder="Type your message..."
+        <textarea 
+          placeholder="Type your message..."
           :value="text"
-          @input="event => text = event.target.value"></textarea>
+          @input="event => text = event.target.value"> </textarea>
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
-        <a href="#" @click="sendMessage">Send</a>
+        <a href="#" @click="sendMessage" >Send</a>
       </footer>
     </main>
   </div>
