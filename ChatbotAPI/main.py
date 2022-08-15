@@ -1,4 +1,4 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoModelForCausalLM, AutoModelWithLMHead, AutoTokenizer
 from fastapi import FastAPI
 from typing import Union
 from fastapi.middleware.cors import CORSMiddleware
@@ -24,9 +24,9 @@ class Message(BaseModel):
     message: str
 
 
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-large")
-model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
-
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
+# model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
+model = AutoModelWithLMHead.from_pretrained("model")
 
 @app.get("/")
 def hello_world():
@@ -48,7 +48,8 @@ def dialogpt(text):
         bot_input_ids = torch.cat([chat_history_ids, new_user_input_ids], dim=-1) if step > 0 else new_user_input_ids
 
         # generated a response while limiting the total chat history to 1000 tokens,
-        chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+        chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id,
+        no_repeat_ngram_size=3, do_sample=True, top_k=100, top_p=0.7, temperature = 0.8)
 
         # pretty print last ouput tokens from bot
         return tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
