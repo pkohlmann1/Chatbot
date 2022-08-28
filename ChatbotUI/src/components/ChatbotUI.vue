@@ -5,6 +5,7 @@ export default {
       text: "",
       messages: [],
       counter: 1,
+      userId: null
     };
   },
   methods: {
@@ -38,7 +39,10 @@ export default {
       const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: this.text }),
+        body: JSON.stringify({
+              message: this.text,
+              userId: this.userId
+            }),
       };
       fetch("http://localhost:7799/send-message", requestOptions)
         .then((response) => response.json())
@@ -46,6 +50,22 @@ export default {
           this.addMessageReceive(data);
         });
     },
+    register() {
+      const requestOptions = {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      };
+      fetch("http://localhost:7799/register", requestOptions)
+          .then((response) => response.json())
+          .then((data) => {
+            this.userId = data;
+            console.log(this.userId)
+          });
+    }
+  },
+  mounted: async function() {
+    await this.register();
+    console.log("done")
   },
 };
 </script>
