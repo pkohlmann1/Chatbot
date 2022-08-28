@@ -15,12 +15,14 @@ export default {
       this.text = "";
     },
     addMessageSend() {
+      let d = new Date();
+      let timeStamp = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '   ' +  d.getHours() + ':' + d.getMinutes();  
       let message = {
         id: this.counter,
         message: this.text,
         sender: 0,
         name: "Philip",
-        time: Date.now(),
+        time: timeStamp,
       };
       this.messages.push(message);
       this.counter++;
@@ -30,7 +32,7 @@ export default {
         id: this.counter,
         message: data,
         sender: 1,
-        name: "Max Mustermann",
+        name: "Max",
         time: Date.now(),
       };
       this.messages.push(message);
@@ -49,6 +51,7 @@ export default {
         .then((data) => {
           this.addMessageReceive(data);
         });
+     
     },
     register() {
       const requestOptions = {
@@ -68,6 +71,7 @@ export default {
     console.log("done")
   },
 };
+
 </script>
 
 <template>
@@ -78,9 +82,9 @@ export default {
       </header>
       <ul>
         <li>
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+          <img src="https://cdn-icons-png.flaticon.com/512/4233/4233813.png" alt="" width="50" height="60">
           <div>
-            <h2>Max Mustermann</h2>
+            <h2>Max</h2>
             <h3>
               <span class="status green"></span>
               online
@@ -91,9 +95,9 @@ export default {
     </aside>
     <main>
       <header>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/chat_avatar_01.jpg" alt="">
+        <img img src="https://cdn-icons-png.flaticon.com/512/4233/4233813.png" alt="" width="50" height="60">
         <div>
-          <h2>Chat with Max Mustermann</h2>
+          <h2>Chat with Max</h2>
         </div>
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_star.png" alt="">
       </header>
@@ -105,7 +109,7 @@ export default {
           </div>
           <div class="triangle"></div>
           <div class="message">
-            Hallo, mein Name ist Max Mustermann. Wie kann ich Ihnen behilflich sein?
+            Hello my name is Max. How can I help you?
           </div>
         </li>
         <li v-for="message in messages" :key="message.id" :class="{ me: message.sender === 0 , you: message.sender === 1}">
@@ -121,12 +125,13 @@ export default {
         </li>
       </ul>
       <footer>
-        <textarea placeholder="Type your message..."
+        <textarea 
+          placeholder="Type your message..."
           :value="text"
-          @input="event => text = event.target.value"></textarea>
+          @input="event => text = event.target.value"> </textarea>
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_picture.png" alt="">
         <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_file.png" alt="">
-        <a href="#" @click="sendMessage">Send</a>
+        <a href="#" @click="sendMessage" >Send</a>
       </footer>
     </main>
   </div>
@@ -180,7 +185,7 @@ aside input{
   background-image:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1940306/ico_search.png);
   background-repeat:no-repeat;
   background-position:170px;
-  background-size:40px;
+  background-size:30px;
 }
 aside input::placeholder{
   color:#fff;
