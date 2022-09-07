@@ -1,6 +1,5 @@
-from transformers import AutoModelForCausalLM, AutoModelWithLMHead, AutoTokenizer
+from transformers import AutoModelWithLMHead, AutoTokenizer
 from fastapi import FastAPI
-from typing import Union
 from fastapi.middleware.cors import CORSMiddleware
 from uvicorn import run
 import os
@@ -24,14 +23,14 @@ app.add_middleware(
     allow_headers = headers
 )
 
+
 class Message(BaseModel):
     message: str
     userId: int
 
 
 tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
-# model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
-model = AutoModelWithLMHead.from_pretrained("output_medium")
+model = AutoModelWithLMHead.from_pretrained("output_final")
 
 
 @app.get("/register")
@@ -52,12 +51,11 @@ def dialogpt(text, user_id):
 
         new_user_input_ids = tokenizer.encode(text + tokenizer.eos_token, return_tensors='pt')
 
-
         # append the new user input tokens to the chat history
         bot_input_ids = torch.cat([chat_history_for_user[user_id], new_user_input_ids], dim=-1) if step > 0 else new_user_input_ids
 
-        # generated a response while limiting the total chat history to 1000 tokens,
-        chat_history_for_user[user_id] = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id,
+        # generated a response while limiting the total chat history to 10000 tokens,
+        chat_history_for_user[user_id] = model.generate(bot_input_ids, max_length=10000, pad_token_id=tokenizer.eos_token_id,
         no_repeat_ngram_size=3, do_sample=True, top_k=100, top_p=0.7, temperature = 0.8)
 
         # pretty print last ouput tokens from bot

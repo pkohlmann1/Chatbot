@@ -9,6 +9,17 @@ Install required packages
 pip install -r requirements.txt
 ```
 
+Check that everything is set up correctly
+```
+.
++-- ChatbotAPI
+|   +-- output_final (contains the trained model files)
+|   --- Dockerfile
+|   --- main.py
+|   --- README.md
+|   --- requirements.txt
+```
+
 ## Usage
 
 ```python
@@ -39,7 +50,7 @@ class Message(BaseModel):
 def send_message(message: Message):
     return dialogpt(message.message)
 ```
-Change into same directory where api.py is located if necessary
+Change into same directory where main.py is located if necessary
 
 Run server with uvicorn
 
