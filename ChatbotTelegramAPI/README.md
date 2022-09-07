@@ -13,6 +13,15 @@ pip install -r requirements.txt
 ```
 
 Make sure you have all necessary model files for the self-trained model in the model directory. Otherwise use a pre-trained model.
+The folder structure should look like this
+```
+.
++-- Finetuning
+|   +-- output_final (Contains all the trained model data)
+|   --- main.py
+|   --- README.md
+|   --- requirements.txt
+```
 
 Download Ngrok from https://ngrok.com/
 Add this Authtoken to your ngrok config with this line in the terminal

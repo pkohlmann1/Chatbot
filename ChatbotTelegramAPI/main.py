@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from flask import Response
 import requests
-from transformers import AutoModelForCausalLM, AutoModelWithLMHead, AutoTokenizer
+from transformers import AutoModelWithLMHead, AutoTokenizer
 from pydantic import BaseModel
 import torch
 
@@ -20,9 +20,8 @@ class Message(BaseModel):
     userId: int
 
 
-tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
-# model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-large")
-model = AutoModelWithLMHead.from_pretrained("model")
+tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-medium")
+model = AutoModelWithLMHead.from_pretrained("output_final")
 
 
 def parse_message(message):
