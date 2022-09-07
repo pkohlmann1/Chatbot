@@ -1,0 +1,26 @@
+version: "1.0"
+services:
+  api:
+    image: chatbot_telegram_api:1.1
+    ports:
+      - 80:80
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:80" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+  ngrok:
+      image: shkoliar/ngrok:latest
+      depends_on:
+        api:
+          condition: service_healthy
+      ports:
+        - 4551:4551
+      links:
+        - api
+      environment:
+        - PARAMS=http --authtoken=2DTpPwg3pkhQRlrR9kXkckLTzqM_3mwvNWjYqpn63UJkWGSsA --region=eu api:80
+        - PORT=80
+        - DOMAIN=api
+  webhook:
+    image: webhook:1.0

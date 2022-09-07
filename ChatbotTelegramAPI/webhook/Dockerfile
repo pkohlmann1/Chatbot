@@ -20,7 +20,5 @@ RUN pip install -r requirements.txt
 # Copy every file in the source folder to the created working directory
 COPY  . .
 
-COPY output_final/ output_final/
-
 #
-CMD ["python", "main.py"]
+CMD ["python", "webhook-setter.py"]

@@ -2,7 +2,7 @@
 
 This is the Chatbot-API. 
 
-## Installation
+## Installation (lokales aufsetzen)
 
 Install required packages
 ```bash
@@ -57,4 +57,27 @@ Run server with uvicorn
 ```bash
 python main.py
 ```
-Access Webserver via Webbrowser-URL [localhost](http://127.0.0.1:8000/). Check docs for more information and test environment. [docs](http://127.0.0.1:8000/docs)
+Access Webserver via Webbrowser-URL [localhost:7799](http://127.0.0.1:8000/). Check docs for more information and test environment. [docs](http://127.0.0.1:8000/docs)
+
+## Installation (lokales setup with docker)
+
+Install docker if not already installed.
+
+# If image (chatbot_api) is already available: 
+
+Execute in terminal:
+```bash
+docker run -p 7799:7799 chatbot_api:1.0
+```
+# If images (chatbot_telegram_api & webhook) are not already available:
+
+Move into directory ChatbotAPI/ and execute in terminal:
+
+```bash
+docker build -t chatbot_api:1.0 ./
+```
+
+After building the images start API.
+```bash
+docker run -p 7799:7799 chatbot_api:1.0
+```

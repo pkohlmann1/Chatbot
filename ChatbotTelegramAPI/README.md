@@ -5,7 +5,7 @@ The Bots Telegram name is CustomerSupportChatbot (@customer_support_chatbot)
 
 The Bots API-Token is 5465490826:AAHGe7Q76oXE0STS7QGoWUra5t1CQbuybgw
 
-## Installation
+## Installation (lokales aufsetzen)
 
 Install required packages
 ```bash
@@ -38,4 +38,34 @@ ngrok http 5000
 
 Also start the API with running the main.py file
 
+## Installation (aufsetzen mit docker)
+
+Install docker if not already installed.
+
+# If images (chatbot_telegram_api & webhook) are already available: 
+
+Move into directory that contains the docker-compose.yml and start everything with.
+```bash
+docker compose up
+```
+# If images (chatbot_telegram_api & webhook) are not already available:
+
+Move into directory ChatbotTelegramAPI/ and execute in terminal:
+
+```bash
+docker build -t chatbot_telegram_api:1.1 ./
+```
+
+Afterwards move into directory webhook/ and execute in terminal:
+
+```bash
+docker build -t webhook:1.0 ./
+```
+
+After building the images start everything with docker compose. Move into directory that contains the docker-compose.yml and start everything with.
+```bash
+docker compose up
+```
+
 Go to the Telegram page of the Chatbot (t.me/customer_support_chatbot) and chat with it :)
+
