@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```
 
 Make sure you have all necessary model files for the self-trained model in the model directory. Otherwise use a pre-trained model.
-The folder structure should look like this
+The folder structure should look like this. Model can be downloaded here: https://www.dropbox.com/sh/4jjl7yvipibfsj3/AAAK1j0sQPZNMEGlnjmw5MW8a?dl=0
 ```
 .
 +-- Finetuning

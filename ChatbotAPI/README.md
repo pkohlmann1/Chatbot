@@ -9,7 +9,7 @@ Install required packages
 pip install -r requirements.txt
 ```
 
-Check that everything is set up correctly
+Check that everything is set up correctly. Model can be downloaded here: https://www.dropbox.com/sh/4jjl7yvipibfsj3/AAAK1j0sQPZNMEGlnjmw5MW8a?dl=0
 ```
 .
 +-- ChatbotAPI
