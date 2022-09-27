@@ -66,11 +66,10 @@ def dialogpt(text, chat_id):
 def index():
     if request.method == 'POST':
         msg = request.get_json()
-
-        chat_id, txt = parse_message(msg)
-        response = dialogpt(txt, chat_id)
-        tel_send_message(chat_id, response)
-
+        if 'text' in msg["message"]:
+            chat_id, txt = parse_message(msg)
+            response = dialogpt(txt, chat_id)
+            tel_send_message(chat_id, response)
         return Response('ok', status=200)
     else:
         return "<h1>Welcome!</h1>"

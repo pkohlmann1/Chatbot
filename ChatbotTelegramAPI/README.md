@@ -33,10 +33,14 @@ ngrok config add-authtoken 2DTpPwg3pkhQRlrR9kXkckLTzqM_3mwvNWjYqpn63UJkWGSsA
 
 Execute the ngrok.exe and type this command into the terminal that pops up to enable the reverse proxy.
 ```bash
-ngrok http 5000
+ngrok http 80
 ```
 
 Also start the API with running the main.py file
+
+Afterwards set the webhook with running the webhook-setter.py in the webhook directory.
+
+Chat with the bot :)
 
 ## Installation (aufsetzen mit docker)
 

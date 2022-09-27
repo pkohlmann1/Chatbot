@@ -28,12 +28,14 @@ export default {
       this.counter++;
     },
     addMessageReceive(data) {
+      let d = new Date();
+      let timeStamp = d.getDate() + '/' + (d.getMonth()+1) + '/' + d.getFullYear() + '   ' +  d.getHours() + ':' + d.getMinutes();
       let message = {
         id: this.counter,
         message: data,
         sender: 1,
         name: "Max",
-        time: Date.now(),
+        time: timeStamp,
       };
       this.messages.push(message);
     },
